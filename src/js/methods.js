@@ -385,6 +385,60 @@ export default {
   },
 
   /**
+   * Skew the image on the x-axis.
+   * @param {number} skewX - The skew ratio on the x-axis.
+   * @returns {Object} this
+   */
+  skewX(skewX) {
+    const { skewY } = this.imageData;
+
+    return this.skew(skewX, isNumber(skewY) ? skewY : 0);
+  },
+
+  /**
+   * Skew the image on the y-axis.
+   * @param {number} skewY - The skew ratio on the y-axis.
+   * @returns {Object} this
+   */
+  skewY(skewY) {
+    const { skewX } = this.imageData;
+
+    return this.skew(isNumber(skewX) ? skewX : 0, skewY);
+  },
+
+  /**
+   * Skew the image
+   * @param {number} skewX - The skew ratio on the x-axis.
+   * @param {number} [skewY=skewX] - The skew ratio on the y-axis.
+   * @returns {Object} this
+   */
+  skew(skewX, skewY = skewX) {
+    const { imageData } = this;
+    let transformed = false;
+
+    skewX = Number(skewX);
+    skewY = Number(skewY);
+
+    if (this.ready && !this.disabled && this.options.scalable) {
+      if (isNumber(skewX)) {
+        imageData.skewX = skewX;
+        transformed = true;
+      }
+
+      if (isNumber(skewY)) {
+        imageData.skewY = skewY;
+        transformed = true;
+      }
+
+      if (transformed) {
+        this.renderCanvas(true, true);
+      }
+    }
+
+    return this;
+  },
+
+  /**
    * Get the cropped area position and size data (base on the original image)
    * @param {boolean} [rounded=false] - Indicate if round the data values or not.
    * @returns {Object} The result cropped data.
@@ -428,6 +482,8 @@ export default {
     if (options.scalable) {
       data.scaleX = imageData.scaleX || 1;
       data.scaleY = imageData.scaleY || 1;
+      data.skewX = imageData.skewX || 0;
+      data.skewY = imageData.skewY || 0;
     }
 
     return data;
@@ -464,6 +520,16 @@ export default {
 
         if (isNumber(data.scaleY) && data.scaleY !== imageData.scaleY) {
           imageData.scaleY = data.scaleY;
+          transformed = true;
+        }
+
+        if (isNumber(data.skewX) && data.skewX !== imageData.skewX) {
+          imageData.skewX = data.skewX;
+          transformed = true;
+        }
+
+        if (isNumber(data.skewY) && data.skewY !== imageData.skewY) {
+          imageData.skewY = data.skewY;
           transformed = true;
         }
       }

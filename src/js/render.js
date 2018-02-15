@@ -220,7 +220,6 @@ export default {
       });
       const width = canvasData.width * (naturalWidth / canvasData.naturalWidth);
       const height = canvasData.height * (naturalHeight / canvasData.naturalHeight);
-
       canvasData.left -= (width - canvasData.width) / 2;
       canvasData.top -= (height - canvasData.height) / 2;
       canvasData.width = width;

@@ -161,6 +161,8 @@ class Cropper {
     let rotate = 0;
     let scaleX = 1;
     let scaleY = 1;
+    const skewX = 0;
+    const skewY = 0;
 
     if (orientation > 1) {
       this.url = arrayBufferToDataURL(arrayBuffer, 'image/jpeg');
@@ -174,6 +176,8 @@ class Cropper {
     if (options.scalable) {
       imageData.scaleX = scaleX;
       imageData.scaleY = scaleY;
+      imageData.skewX = skewX;
+      imageData.skewY = skewY;
     }
 
     this.clone();
