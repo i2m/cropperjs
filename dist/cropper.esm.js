@@ -5,7 +5,7 @@
  * Copyright (c) 2015-2018 Chen Fengyuan
  * Released under the MIT license
  *
- * Date: 2018-02-19T08:09:41.046Z
+ * Date: 2018-03-07T13:42:56.417Z
  */
 
 var WINDOW = typeof window !== 'undefined' ? window : {};
@@ -33,6 +33,8 @@ var CLASS_HIDE = NAMESPACE + '-hide';
 var CLASS_INVISIBLE = NAMESPACE + '-invisible';
 var CLASS_MODAL = NAMESPACE + '-modal';
 var CLASS_MOVE = NAMESPACE + '-move';
+var CLASS_GRAB = NAMESPACE + '-grab';
+var CLASS_GRABBING = NAMESPACE + '-grabbing';
 
 // Data keys
 var DATA_ACTION = 'action';
@@ -2021,6 +2023,8 @@ var handlers = {
       action = getData(e.target, DATA_ACTION);
     }
 
+    addClass(this.face, CLASS_GRABBING);
+
     if (!REGEXP_ACTIONS.test(action)) {
       return;
     }
@@ -2070,6 +2074,8 @@ var handlers = {
       extend(pointers[e.pointerId || 0], getPointer(e, true));
     }
 
+    addClass(this.face, CLASS_GRABBING);
+
     this.change(e);
   },
   cropEnd: function cropEnd(e) {
@@ -2088,6 +2094,8 @@ var handlers = {
     } else {
       delete pointers[e.pointerId || 0];
     }
+
+    removeClass(this.face, CLASS_GRABBING);
 
     if (!action) {
       return;
@@ -3444,7 +3452,7 @@ var methods = {
         // Sync drag mode to crop box when it is not movable
         setData(face, DATA_ACTION, mode);
         toggleClass(face, CLASS_CROP, croppable);
-        toggleClass(face, CLASS_MOVE, movable);
+        toggleClass(face, CLASS_GRAB, movable);
       }
     }
 
@@ -3780,7 +3788,7 @@ var Cropper = function () {
       }
 
       if (options.cropBoxMovable) {
-        addClass(face, CLASS_MOVE);
+        addClass(face, CLASS_GRAB);
         setData(face, DATA_ACTION, ACTION_ALL);
       }
 

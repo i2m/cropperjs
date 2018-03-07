@@ -3,6 +3,7 @@ import {
   ACTION_ZOOM,
   CLASS_CROP,
   CLASS_MODAL,
+  CLASS_GRABBING,
   DATA_ACTION,
   DRAG_MODE_CROP,
   DRAG_MODE_MOVE,
@@ -21,6 +22,7 @@ import {
   getPointer,
   hasClass,
   toggleClass,
+  removeClass,
 } from './utilities';
 
 export default {
@@ -123,6 +125,8 @@ export default {
       action = getData(e.target, DATA_ACTION);
     }
 
+    addClass(this.face, CLASS_GRABBING);
+
     if (!REGEXP_ACTIONS.test(action)) {
       return;
     }
@@ -171,6 +175,8 @@ export default {
       extend(pointers[e.pointerId || 0], getPointer(e, true));
     }
 
+    addClass(this.face, CLASS_GRABBING);
+
     this.change(e);
   },
 
@@ -188,6 +194,8 @@ export default {
     } else {
       delete pointers[e.pointerId || 0];
     }
+
+    removeClass(this.face, CLASS_GRABBING);
 
     if (!action) {
       return;

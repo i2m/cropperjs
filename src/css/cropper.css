@@ -277,6 +277,16 @@
   cursor: move;
 }
 
+.cropper-grab {
+  cursor: grab;
+  cursor: -webkit-grab;
+}
+
+.cropper-grabbing {
+  cursor: grabbing;
+  cursor: -webkit-grabbing;
+}
+
 .cropper-crop {
   cursor: crosshair;
 }

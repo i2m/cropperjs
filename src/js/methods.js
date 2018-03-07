@@ -3,6 +3,7 @@ import {
   CLASS_DISABLED,
   CLASS_HIDDEN,
   CLASS_MODAL,
+  CLASS_GRAB,
   CLASS_MOVE,
   DATA_ACTION,
   DRAG_MODE_CROP,
@@ -890,7 +891,7 @@ export default {
         // Sync drag mode to crop box when it is not movable
         setData(face, DATA_ACTION, mode);
         toggleClass(face, CLASS_CROP, croppable);
-        toggleClass(face, CLASS_MOVE, movable);
+        toggleClass(face, CLASS_GRAB, movable);
       }
     }
 

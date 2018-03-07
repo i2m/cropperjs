@@ -23,6 +23,8 @@ export const CLASS_HIDE = `${NAMESPACE}-hide`;
 export const CLASS_INVISIBLE = `${NAMESPACE}-invisible`;
 export const CLASS_MODAL = `${NAMESPACE}-modal`;
 export const CLASS_MOVE = `${NAMESPACE}-move`;
+export const CLASS_GRAB = `${NAMESPACE}-grab`;
+export const CLASS_GRABBING = `${NAMESPACE}-grabbing`;
 
 // Data keys
 export const DATA_ACTION = 'action';

@@ -12,7 +12,7 @@ import {
   CLASS_HIDE,
   CLASS_INVISIBLE,
   CLASS_MODAL,
-  CLASS_MOVE,
+  CLASS_GRAB,
   DATA_ACTION,
   EVENT_CROP,
   EVENT_ERROR,
@@ -339,7 +339,7 @@ class Cropper {
     }
 
     if (options.cropBoxMovable) {
-      addClass(face, CLASS_MOVE);
+      addClass(face, CLASS_GRAB);
       setData(face, DATA_ACTION, ACTION_ALL);
     }
 
